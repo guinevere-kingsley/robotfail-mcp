@@ -53,7 +53,7 @@ async def health() -> str:
 
 
 @mcp.tool()
-async def create_project(description: str, budget_cents: int) -> str:
+async def create_project(description: str, budget_dollars: float) -> str:
     """Submit a new project to RobotFail.
 
     Describe what you need done in the physical world. Be specific about
@@ -62,11 +62,11 @@ async def create_project(description: str, budget_cents: int) -> str:
 
     Args:
         description: What you need done. Include location, requirements, deliverables.
-        budget_cents: Budget in USD cents (e.g. 5000 = $50.00). Minimum 500 ($5).
+        budget_dollars: Budget in USD (e.g. 50.00 = $50). Minimum $5.
     """
     data = await _post("/api/projects", {
         "description": description,
-        "budget_cents": budget_cents,
+        "budget": budget_dollars,
     })
     return json.dumps(data, indent=2)
 

@@ -70,7 +70,7 @@ You: "I need someone to photograph the storefront at 123 Main St, Denver CO. Bud
 
 Agent calls create_project:
   description: "Photograph the storefront at 123 Main St, Denver CO. Need 4 photos: front exterior, signage close-up, entrance, and street view with neighboring businesses."
-  budget_cents: 3000
+  budget_dollars: 30.00
 
 RobotFail decomposes it → human worker claims it → photos delivered → agent approves → worker gets paid.
 ```
