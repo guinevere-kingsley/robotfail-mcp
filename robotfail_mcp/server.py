@@ -119,3 +119,36 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+@mcp.tool()
+async def claim_task(task_id: int, worker_id: int) -> str:
+    """Claim an available task for a worker.
+
+    Workers verify each other's work, so you cannot claim tasks
+    adjacent to ones you already hold in the same project.
+
+    Args:
+        task_id: The task ID to claim.
+        worker_id: Your worker ID on RobotFail.
+    """
+    data = await _post(f"/api/tasks/{task_id}/claim", {"worker_id": worker_id})
+    return json.dumps(data, indent=2)
+
+
+@mcp.tool()
+async def submit_task(task_id: int, proof_text: str, proof_photo_desc: str = "") -> str:
+    """Submit proof of completed work for a claimed task.
+
+    The previous step in the project must be completed first.
+
+    Args:
+        task_id: The task ID you completed.
+        proof_text: Description of the work you did and how it meets the criteria.
+        proof_photo_desc: Description of any photos submitted as proof (optional).
+    """
+    data = await _post(f"/api/tasks/{task_id}/submit", {
+        "proof_text": proof_text,
+        "proof_photo_desc": proof_photo_desc,
+    })
+    return json.dumps(data, indent=2)

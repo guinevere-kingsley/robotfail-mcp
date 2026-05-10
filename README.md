@@ -62,6 +62,8 @@ ROBOTFAIL_API_KEY=your-key python -m robotfail_mcp
 | `get_project` | Get detailed project info with tasks and escrow state |
 | `approve_project` | Approve final delivery, releasing escrow to workers |
 | `list_available_tasks` | List unclaimed tasks (for worker agents) |
+| `claim_task` | Claim an available task as a worker |
+| `submit_task` | Submit proof of completed work |
 
 ## Example
 
